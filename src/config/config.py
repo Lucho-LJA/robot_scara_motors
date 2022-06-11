@@ -17,37 +17,49 @@ GENERAL CONFIG OF PROJECT
 """
 USER CONFIG
     NAME: Name of robot. It is escencial, if you work with several robots
-    TYPE_SERVO: Especify the type of robot 
-        Servo2: The scara only use 2 servos (2FOD)
+            -If you will do one hmi to control several robots Add more variables
+            or use a base name to config the env.
+    TYPE_MOTOR: Especify the configuration of motors robot
+        MOTOR2DIS: The scara use 2 motors and 1 lineal motor (3FOD)
+                    they are controlled sending a angle or distance
         (For now only there is one)
-        Servo3: The scara use 3 servos (3FOD)
 
     TYPE_ACTUATOR: Especify the type of actuator
         NoAct : No use a actuator.
-        ImanServo : Use a iman to catch metalic pieces and the last servo to remove
-                    the piece. Is necesary a specyfic mecanic design
         OnOff:  Use a actutor on/off such as electroiman, gripper or others, which only
                 need a action true or false to start/stop. 
+    
+    AMPER_CONTROL: Especify if the robot has a control of current
+        True or False 
+
+    CONTROL: Especify if the type of control
+        PID :  Control using PID. Recive and send kp, ki, kd parammetres
 """
 # Input name of robot
-NAME_ROBOT = "scara1"
+NAME_ROBOT = "scara"
 # Input the type of scara: Servo2only - Servo3_without_act - Servo3_with_act
-TYPE_SERVO = "Servo2"
+TYPE_MOTOR = "MOTOR2DIS"
 #Input the type of actuator: NoAct - ImanServo - OnOff
 TYPE_ACTUATOR = "NoAct"
+#Input if the robot has a current control
+AMPER_CONTROL = True
+
+#Input the type of control PID
+PID_CONTROL = "PID"
 
 
 """
 Default Config - If you aren't a deveploment, don't modify it
     dir_work: path of main.py file
     dir_work_aux: auxiliar path of main.py file
-    N_SERVO : Number of servos that the robot has
+    N_MOTOR : Number of motors that the robot has
 """
 dir_work=''
 dir_work_aux=''
-if TYPE_SERVO == "Servo2":
-    N_SERVO = 2
-elif TYPE_SERVO == 'Servo3':
-    N_SERVO = 3
+
+if TYPE_MOTOR == "MOTOR2DIS":
+    N_MOTOR = 2
+
+
 
 

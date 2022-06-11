@@ -5,7 +5,7 @@ from config import RobotROS as Rros
 from PyQt5 import QtCore, QtGui, QtWidgets
 from lib.hmi import *
 
-r_scara = Rros.Robot_Scara(NAME_ROBOT ,N_SERVO,TYPE_ACTUATOR)
+r_scara = Rros.Robot(NAME_ROBOT ,N_MOTOR)
 
 
 if __name__ == "__main__":
