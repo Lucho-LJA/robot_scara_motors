@@ -34,6 +34,7 @@ USER CONFIG
 
     CONTROL: Especify if the type of control
         PID :  Control using PID. Recive and send kp, ki, kd parammetres
+        ON-OFF : Control using ON-OFF control.
 """
 # Input name of robot
 NAME_ROBOT = "scara"
@@ -44,8 +45,8 @@ TYPE_ACTUATOR = "NoAct"
 #Input if the robot has a current control
 AMPER_CONTROL = True
 
-#Input the type of control PID
-PID_CONTROL = "PID"
+#Input the type of control
+TYPE_CONTROL = "ON-OFF"
 
 
 """
