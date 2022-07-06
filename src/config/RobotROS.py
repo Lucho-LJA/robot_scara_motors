@@ -14,7 +14,7 @@ class Robot:
 		#Values to publsih
 		self.val_arrayInt32=Int32MultiArray()
 		self.val_Int8 = Int8()
-		
+		self.rate = 0
 		#Init variable of Position, current and control of motors
 		self.ang =[]
 		self.sensor = []
@@ -48,11 +48,7 @@ class Robot:
 			rospy.Subscriber(name+'/get_kp', Int32MultiArray, self.recive_kp)
 			rospy.Subscriber(name+'/get_ki', Int32MultiArray, self.recive_ki)
 			rospy.Subscriber(name+'/get_kd', Int32MultiArray, self.recive_kd)
-		print("Inicializando nodo...")
-		rospy.init_node(name, anonymous=True)
-		rospy.loginfo('Control Robot SCARA: '+name)
-		print("Nodo Inicializado")
-		self.rate = rospy.Rate(10) # 10hz
+		
 		
 	# Function to suscribe
 	def recive_position(self,data):

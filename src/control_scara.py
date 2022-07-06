@@ -1,12 +1,10 @@
 #!/usr/bin/env python3
 # _*_ coding: utf-8 _*_
 from config.config import *
-from config import RobotROS as Rros
 from PyQt5 import QtCore, QtGui, QtWidgets
-from lib.hmi import *
-
-r_scara = Rros.Robot(NAME_ROBOT ,N_MOTOR)
-
+#from lib.hmi import *
+from config.initROS import *
+from config.configHmiWindow import *
 
 if __name__ == "__main__":
 	#globales.dir_work=os.path.dirname(os.path.abspath(__file__))

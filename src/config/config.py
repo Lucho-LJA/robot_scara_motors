@@ -35,9 +35,16 @@ USER CONFIG
     CONTROL: Especify if the type of control
         PID :  Control using PID. Recive and send kp, ki, kd parammetres
         ON-OFF : Control using ON-OFF control.
+    
+    APPLICATION: Especify the aplication
+        CELL: A cell of 2 scaras, 1 transporter band and a feeder in order to clasify objects with AV.
 """
-# Input name of robot
-NAME_ROBOT = "scara"
+# Input name of robots
+NAME_ROBOT = "scara1"
+NAME_ROBOT2 = "scara2"
+NAME_CONVEYOR = "banda"
+NAME_FEEDER = "alimentador"
+
 # Input the type of scara: Servo2only - Servo3_without_act - Servo3_with_act
 TYPE_MOTOR = "MOTOR2DIS"
 #Input the type of actuator: NoAct - ImanServo - OnOff
@@ -47,6 +54,9 @@ AMPER_CONTROL = True
 
 #Input the type of control
 TYPE_CONTROL = "ON-OFF"
+
+#Imput the type o application
+TYPE_APP = "CELL"
 
 
 """
