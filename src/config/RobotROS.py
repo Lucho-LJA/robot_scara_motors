@@ -43,7 +43,8 @@ class Robot:
 
 		print("Inicializando Subscriptores...")
 		rospy.Subscriber(name+'/get_position', Int32MultiArray, self.recive_position)
-		rospy.Subscriber(name+'/get_sensor', Int32MultiArray, self.recive_sensor)
+		if AMPER_CONTROL:
+			rospy.Subscriber(name+'/get_sensor', Int32MultiArray, self.recive_sensor)
 		if TYPE_CONTROL == "PID":
 			rospy.Subscriber(name+'/get_kp', Int32MultiArray, self.recive_kp)
 			rospy.Subscriber(name+'/get_ki', Int32MultiArray, self.recive_ki)
@@ -81,8 +82,8 @@ class Robot:
 		self.pub_ang.publish(self.val_arrayInt32)
 		self.rate.sleep()
 
-	#Actuator OnOff
-	def actuatorOnOff(self,option):
+	#Actuator
+	def actuator(self,option):
 		if option:
 			self.val_Int8.data = 1
 		else:
