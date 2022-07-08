@@ -66,6 +66,8 @@ UMBRAL_MAX = 150
 #Variable position
 pos_red=[0,0]
 pos_green=[0,0]
+detec_red = False
+detec_green = False
 
 #Image Detection
 ##Recorte de video
@@ -81,16 +83,29 @@ CAM_LIM_BOTTOM=480-65
 #Variables de camara
 PT_MAX_X=244
 PT_MAX_Y=244
+"""
+Value of points to calib the real coord
+##<PT_1>######<PT_2>##
+##<PT_3>######<PT_4>##
+"""
+PT_PX_1=[128,179,0]
+PT_PX_2=[128,-179,0]
+PT_PX_3=[282,179,0]
+PT_PX_4=[291,-179,0]
+PT_REAL_1=[117,206]
+PT_REAL_2=[533,204]
+PT_REAL_3=[119,374]
+PT_REAL_4=[540,394]
 #0.45
 #mtx=np.float64([[560.60367017,0,329.90361105],[0,560.1149988,235.11508813],[0,0,1]])
 #dist=np.array([[0.18452098, -1.21435869, -0.00522202, 0.00729794, 3.39767196]])
 #0.32
-mtx=np.float64([[560.95148671,0,331.50395719],[0,559.84861743,235.67879925],[0,0,1]])
+MTX=np.float64([[560.95148671,0,331.50395719],[0,559.84861743,235.67879925],[0,0,1]])
 dist=np.array([[0.17808722, -1.14977257, -0.00590674, 0.00851292, 3.07708921]])
 
-patron = np.float32([[128,179,0], [128,-179,0], [282,179,0], [291,-179,0]])
-centros_ordenados = np.float32([[117,206] , [533,204], [119,374], [540,394]])
-retval, rvec, tvec = cv2.solvePnP(objectPoints = patron, imagePoints = centros_ordenados, cameraMatrix = mtx, distCoeffs = dist)
+patron = np.float32([PT_PX_1, PT_PX_2, PT_PX_3, PT_PX_4])
+centros_ordenados = np.float32([PT_REAL_1 , PT_REAL_2, PT_REAL_3, PT_REAL_4])
+RET_VAL, R_VEC, T_VEC = cv2.solvePnP(objectPoints = patron, imagePoints = centros_ordenados, cameraMatrix = MTX, distCoeffs = dist)
 
 
 ###ROS VARIABLE###

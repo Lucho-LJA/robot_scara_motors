@@ -10,9 +10,7 @@ if __name__ == "__main__":
 	#globales.dir_work=os.path.dirname(os.path.abspath(__file__))
 	#globales.dir_work_aux=os.path.dirname(os.path.abspath(__file__))
     import sys
-    app = QtWidgets.QApplication(sys.argv)
-    MainWindow = QtWidgets.QMainWindow()
+    app = QtWidgets.QApplication([])
     ui = Ui_MainWindow()
-    ui.setupUi(MainWindow)
-    MainWindow.show()
-    sys.exit(app.exec_())
+    ui.show()
+    app.exec_()

@@ -65,7 +65,7 @@
     <property name="tabBarAutoHide">
      <bool>false</bool>
     </property>
-    <widget class="QWidget" name="tabWidgetPage1" native="true">
+    <widget class="QWidget" name="tabWidgetPage1">
      <attribute name="title">
       <string>INICIO</string>
      </attribute>
@@ -249,7 +249,7 @@
       </layout>
      </widget>
     </widget>
-    <widget class="QWidget" name="tabWidgetPage2" native="true">
+    <widget class="QWidget" name="tabWidgetPage2">
      <attribute name="title">
       <string>PRODUCCION</string>
      </attribute>
@@ -943,6 +943,9 @@ background-color: rgb(136, 138, 133);</string>
        <property name="text">
         <string/>
        </property>
+       <property name="scaledContents">
+        <bool>true</bool>
+       </property>
       </widget>
      </widget>
      <widget class="QWidget" name="verticalLayoutWidget_4">
@@ -1297,6 +1300,9 @@ background-color: rgb(136, 138, 133);</string>
       </property>
       <property name="text">
        <string/>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
