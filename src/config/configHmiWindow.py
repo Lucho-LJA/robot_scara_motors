@@ -33,10 +33,31 @@ class Ui_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         #Events of pushbuttons
         self.button_start.clicked.connect(self.start_production)
         self.button_stop.clicked.connect(self.stop_production)
-    
+        self.button_stop_emer.clicked.connect(self.stop_emergency)
+
+        self.button_manual.clicked.connect(self.change_manual)
+
+    def change_manual(self):
+        if self.button_manual.text() == "PARAR TODO E INICIAR CONTROL MANUAL":
+            self.button_manual.setText("APAGAR MODO MANUAL")
+            self.stop_production()
+            self.button_start.setEnabled(False)
+            self.manual_1.setEnabled(True)
+            self.in_action = False
+            self.operation = 2
+        else:
+            self.button_manual.setText("PARAR TODO E INICIAR CONTROL MANUAL")
+            self.button_start.setEnabled(True)
+            self.in_action = False
+            self.operation = 0
+
+    def stop_emergency(self):
+        self.operation = 0
+        self.button_start.setEnabled(True)
+        self.button_stop.setEnabled(False)
+        #Set config emergency
     def start_production(self):
         self.operation = 1
-        print("ok")
         self.button_start.setEnabled(False)
         self.button_stop.setEnabled(True)
         #Set to home all
@@ -91,4 +112,5 @@ class Ui_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             if self.tabWidget.currentIndex() == 2:
                 self.label.setPixmap(pixmap)
             else:
-                self.label_18.setPixmap(pixmap)
+                if self.scara1_man.isChecked and self.operation == 2:
+                    self.label_18.setPixmap(pixmap)
