@@ -35,7 +35,129 @@ class Ui_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.button_stop.clicked.connect(self.stop_production)
         self.button_stop_emer.clicked.connect(self.stop_emergency)
 
+
         self.button_manual.clicked.connect(self.change_manual)
+
+        self.button_bm_clock.clicked.connect(self.moveScaraBaseClock)
+        self.button_bm_counter.clicked.connect(self.moveScaraBaseCounter)
+        self.button_bodym_clock.clicked.connect(self.moveScaraBodyClock)
+        self.button_bodym_counter.clicked.connect(self.moveScaraBodyCounter)
+        self.button_lm_up.clicked.connect(self.moveScaraLinealUp)
+        self.button_lm_down.clicked.connect(self.moveScaraLinealDown)
+        self.button_act_start.clicked.connect(self.actuatoScaraOn)
+        self.button_act_stop.clicked.connect(self.actuatoScaraOff)
+        self.button_home.clicked.connect(self.goHOme)
+
+    def moveScaraBaseClock(self):
+        if self.scara1_man.isChecked():
+            aux=scara1.position
+            if aux[0]+DELTA_ANG > MOTOR1_MAX:
+                aux[0]=MOTOR1_MAX
+            else:
+                aux[0]=aux[0]+DELTA_ANG
+            scara1.moveTo(aux)
+        else:
+            aux=scara2.position
+            if aux[0]+DELTA_ANG > MOTOR1_MAX:
+                aux[0]=MOTOR1_MAX
+            else:
+                aux[0]=aux[0]+DELTA_ANG
+            scara2.moveTo(aux)
+    def moveScaraBaseCounter(self):
+        if self.scara1_man.isChecked():
+            aux=scara1.position
+            if aux[0]-DELTA_ANG < MOTOR1_MIN:
+                aux[0]=MOTOR1_MIN
+            else:
+                aux[0]=aux[0]-DELTA_ANG
+            scara1.moveTo(aux)
+        else:
+            aux=scara2.position
+            if aux[0]-DELTA_ANG > MOTOR1_MIN:
+                aux[0]=MOTOR1_MIN
+            else:
+                aux[0]=aux[0]-DELTA_ANG
+            scara2.moveTo(aux)
+    def moveScaraBodyClock(self):
+        if self.scara1_man.isChecked():
+            aux=scara1.position
+            if aux[1]+DELTA_ANG > MOTOR2_MAX:
+                aux[1]=MOTOR2_MAX
+            else:
+                aux[1]=aux[1]+DELTA_ANG
+            scara1.moveTo(aux)
+        else:
+            aux=scara2.position
+            if aux[1]+DELTA_ANG > MOTOR2_MAX:
+                aux[1]=MOTOR2_MAX
+            else:
+                aux[1]=aux[1]+DELTA_ANG
+            scara2.moveTo(aux)
+    def moveScaraBodyCounter(self):
+        if self.scara1_man.isChecked():
+            aux=scara1.position
+            if aux[1]-DELTA_ANG < MOTOR2_MIN:
+                aux[1]=MOTOR2_MIN
+            else:
+                aux[1]=aux[1]-DELTA_ANG
+            scara1.moveTo(aux)
+        else:
+            aux=scara2.position
+            if aux[1]-DELTA_ANG > MOTOR2_MIN:
+                aux[1]=MOTOR2_MIN
+            else:
+                aux[1]=aux[1]-DELTA_ANG
+            scara2.moveTo(aux)
+    def moveScaraLinealUp(self):
+        if self.scara1_man.isChecked():
+            aux=scara1.position
+            if aux[2]+DELTA_LONG > MOTOR3_MAX:
+                aux[2]=MOTOR3_MAX
+            else:
+                aux[2]=aux[2]+DELTA_LONG
+            scara1.moveTo(aux)
+        else:
+            aux=scara2.position
+            if aux[2]+DELTA_LONG > MOTOR3_MAX:
+                aux[2]=MOTOR3_MAX
+            else:
+                aux[2]=aux[2]+DELTA_LONG
+            scara2.moveTo(aux)
+    def moveScaraLinealDown(self):
+        if self.scara1_man.isChecked():
+            aux=scara1.position
+            if aux[2]-DELTA_LONG < MOTOR3_MIN:
+                aux[2]=MOTOR3_MIN
+            else:
+                aux[2]=aux[2]-DELTA_LONG
+            scara1.moveTo(aux)
+        else:
+            aux=scara2.position
+            if aux[2]-DELTA_LONG < MOTOR3_MIN:
+                aux[2]=MOTOR3_MIN
+            else:
+                aux[2]=aux[2]-DELTA_LONG
+            scara2.moveTo(aux)
+    def actuatoScaraOn(self):
+        if self.scara1_man.isChecked():
+            scara1.actuator(True)
+        else:
+            scara2.actuator(True)
+        self.button_act_start.setEnabled(False)
+        self.button_act_stop.setEnabled(True)
+    def actuatoScaraOff(self):
+        if self.scara1_man.isChecked():
+            scara1.actuator(False)
+        else:
+            scara2.actuator(False)
+        self.button_act_start.setEnabled(True)
+        self.button_act_stop.setEnabled(False)
+
+    def goHome(self):
+        if self.scara1_man.isChecked():
+            scara1.pubHome(SCARA1_HOME)
+        else:
+            scara2.pubHome(SCARA2_HOME)
 
     def change_manual(self):
         if self.button_manual.text() == "PARAR TODO E INICIAR CONTROL MANUAL":
@@ -43,13 +165,18 @@ class Ui_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.stop_production()
             self.button_start.setEnabled(False)
             self.manual_1.setEnabled(True)
+            self.manual_2.setEnabled(True)
             self.in_action = False
             self.operation = 2
         else:
             self.button_manual.setText("PARAR TODO E INICIAR CONTROL MANUAL")
             self.button_start.setEnabled(True)
+            self.manual_1.setEnabled(False)
+            self.manual_2.setEnabled(False)
             self.in_action = False
             self.operation = 0
+
+
 
     def stop_emergency(self):
         self.operation = 0
@@ -109,8 +236,10 @@ class Ui_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             pixmap = QtGui.QPixmap()
             pixmap.convertFromImage(image.rgbSwapped())
             # Mostramos el QPixmap en la QLabel.
-            if self.tabWidget.currentIndex() == 2:
-                self.label.setPixmap(pixmap)
+            if self.tabWidget.currentIndex() == 3:
+                self.label_18.setPixmap(pixmap)
             else:
-                if self.scara1_man.isChecked and self.operation == 2:
-                    self.label_18.setPixmap(pixmap)
+                if self.scara2_man.isChecked() and self.operation == 2:
+                    self.label.setPixmap(pixmap)
+                else:
+                    self.label.clear()

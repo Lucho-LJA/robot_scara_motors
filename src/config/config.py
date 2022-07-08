@@ -30,6 +30,19 @@ AMPER_CONTROL = True
 TYPE_CONTROL = "ON-OFF"
 #Input the type of identification
 CAM_INPUT = 0
+#Config limites of positions of motors GRADES(1,2) AND DISTANCE(3-mm) 
+MOTOR1_MIN = 0
+MOTOR1_MAX = 180
+MOTOR2_MIN = 0
+MOTOR2_MAX = 180
+MOTOR3_MIN = 0
+MOTOR3_MAX = 300
+DELTA_ANG = 10
+DELTA_LONG = 100
+#Config the home of robot
+SCARA1_HOME=[0,0,0]
+SCARA2_HOME=[0,0,0]
+
 
 
 

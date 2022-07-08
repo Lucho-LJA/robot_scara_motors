@@ -16,7 +16,7 @@ class Robot:
 		self.val_Int8 = Int8()
 		self.rate = 0
 		#Init variable of Position, current and control of motors
-		self.ang =[]
+		self.position =[]
 		self.sensor = []
 		#Only PID Control
 		self.kp = []
@@ -33,7 +33,7 @@ class Robot:
 
 			
 		#Init publisher
-		self.pub_ang = rospy.Publisher(name+'/set_position', Int32MultiArray, queue_size=2)
+		self.pub_pos = rospy.Publisher(name+'/set_position', Int32MultiArray, queue_size=2)
 		self.pub_act = rospy.Publisher(name+'/set_actuator', Int8, queue_size=2)
 		self.pub_stop = rospy.Publisher(name+'/stop', Int8, queue_size=2)
 		if TYPE_CONTROL == "PID":
@@ -53,7 +53,7 @@ class Robot:
 		
 	# Function to suscribe
 	def recive_position(self,data):
-		self.ang = data.data
+		self.positon = self.changeScalePos(data.data)
 	
 	def recive_sensor(self,data):
 		self.sensor = data.data
@@ -79,7 +79,7 @@ class Robot:
 	#Position
 	def moveTo(self,data):
 		self.val_arrayInt32.data = data
-		self.pub_ang.publish(self.val_arrayInt32)
+		self.pub_pos.publish(self.val_arrayInt32)
 		self.rate.sleep()
 
 	#Actuator
@@ -104,13 +104,20 @@ class Robot:
 			self.rate.sleep()
 		else:
 			pass
-
-	'''
-	def pubHome(self):
-		self.actuator.data=2
-		self.pub_act.publish(self.actuator)
+	
+	def changeScalePos(self,pos):
+		data1=245-76.93*pos[0]
+		data2=245-76.93*pos[1]
+		data3=245-76.93*pos[2]
+		return [data1,data2,data3]
+	
+	def pubHome(self,posHome):
+		self.val_arrayInt32.data = posHome
+		self.val_Int8.data = 0
+		self.pub_act.publish(self.val_Int8)
+		self.pub_pos.publish(self.val_arrayInt32)
 		self.rate.sleep()
-	'''
+	
 	
 
 		

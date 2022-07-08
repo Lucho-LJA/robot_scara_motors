@@ -334,6 +334,9 @@ class Ui_MainWindow(object):
         self.label.setText("")
         self.label.setScaledContents(True)
         self.label.setObjectName("label")
+        self.button_home = QtWidgets.QPushButton(self.manual_1)
+        self.button_home.setGeometry(QtCore.QRect(80, 370, 89, 25))
+        self.button_home.setObjectName("button_home")
         self.verticalLayoutWidget_4 = QtWidgets.QWidget(self.tab)
         self.verticalLayoutWidget_4.setGeometry(QtCore.QRect(0, 39, 1202, 16))
         self.verticalLayoutWidget_4.setObjectName("verticalLayoutWidget_4")
@@ -520,7 +523,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
-        self.tabWidget.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(2)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -559,6 +562,7 @@ class Ui_MainWindow(object):
         self.button_act_stop.setText(_translate("MainWindow", "OFF"))
         self.button_act_start.setText(_translate("MainWindow", "ON"))
         self.label_26.setText(_translate("MainWindow", "ACTUADOR"))
+        self.button_home.setText(_translate("MainWindow", "HOME"))
         self.label_11.setText(_translate("MainWindow", "CONTROL MANUAL"))
         self.button_manual.setText(_translate("MainWindow", "PARAR TODO E INICIAR CONTROL MANUAL"))
         self.label_22.setText(_translate("MainWindow", "CONTROL DE SCARAS"))
