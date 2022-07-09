@@ -15,14 +15,21 @@ class Feeder:
 		self.val_Int8 = Int8()
 		self.sensor1 = False
 		self.sensor2 = False
+		self.state = False
 		#Init publisher
 		self.pub_act = rospy.Publisher(name+'/action', Int8, queue_size=2)
 
 		print("Inicializando Subscriptores...")
 		rospy.Subscriber(name+'/get_sensor1', Int8, self.recive_sensor1)
 		rospy.Subscriber(name+'/get_sensor2', Int8, self.recive_sensor2)
+		rospy.Subscriber(name+'/get_state', Int8, self.recive_state)
 		
 	# Function to suscribe
+	def recive_state(self,data):
+		if data.data == 0:
+			self.state = False
+		else:
+			self.state = True
 	def recive_sensor1(self,data):
 		if data.data == 0:
 			self.sensor1 = False

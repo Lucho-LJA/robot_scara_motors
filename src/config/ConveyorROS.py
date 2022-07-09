@@ -13,6 +13,7 @@ class Conveyor:
 		self.val_Int8 = Int8()
 		#Atributes of element
 		self.emergency = False
+		self.state = False
 			
 		#Init publisher
 		self.pub_act = rospy.Publisher(name+'/action', Int8, queue_size=2)
@@ -20,6 +21,7 @@ class Conveyor:
 		#Init Sunscriptors
 		print("Inicializando Subscriptores...")
 		rospy.Subscriber(name+'/get_emergency', Int8, self.recive_emergency)
+		rospy.Subscriber(name+'/get_state', Int8, self.recive_state)
 		
 	# Function to suscribe
 	def recive_emergency(self,data):
@@ -27,6 +29,11 @@ class Conveyor:
 			self.emergency = False
 		else:
 			self.emergency = True
+	def recive_state(self,data):
+		if data.data == 0:
+			self.state = False
+		else:
+			self.state = True
 	#Action
 	def action(self,option):
 		if option=='clock':

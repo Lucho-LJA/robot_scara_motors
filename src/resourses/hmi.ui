@@ -1106,7 +1106,7 @@ background-color: rgb(136, 138, 133);</string>
        </property>
        <property name="geometry">
         <rect>
-         <x>130</x>
+         <x>150</x>
          <y>360</y>
          <width>89</width>
          <height>25</height>
@@ -1129,14 +1129,14 @@ background-color: rgb(136, 138, 133);</string>
         <string>BANDA TRANSPAORTADORA:</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="button_banda_stop">
+      <widget class="QPushButton" name="button_conveyor_stop">
        <property name="enabled">
         <bool>false</bool>
        </property>
        <property name="geometry">
         <rect>
-         <x>130</x>
-         <y>230</y>
+         <x>90</x>
+         <y>270</y>
          <width>89</width>
          <height>25</height>
         </rect>
@@ -1161,7 +1161,7 @@ background-color: rgb(136, 138, 133);</string>
       <widget class="QPushButton" name="button_feeder_counter">
        <property name="geometry">
         <rect>
-         <x>120</x>
+         <x>140</x>
          <y>60</y>
          <width>89</width>
          <height>25</height>
@@ -1197,7 +1197,7 @@ background-color: rgb(136, 138, 133);</string>
         <string>Horario</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="button_banda_start">
+      <widget class="QPushButton" name="button_conveyor_clock">
        <property name="geometry">
         <rect>
          <x>30</x>
@@ -1207,7 +1207,7 @@ background-color: rgb(136, 138, 133);</string>
         </rect>
        </property>
        <property name="text">
-        <string>ON</string>
+        <string>Horario</string>
        </property>
       </widget>
       <widget class="QPushButton" name="button_cicle_start">
@@ -1221,6 +1221,19 @@ background-color: rgb(136, 138, 133);</string>
        </property>
        <property name="text">
         <string>ON</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="button_conveyor_counter">
+       <property name="geometry">
+        <rect>
+         <x>150</x>
+         <y>230</y>
+         <width>89</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Antihorario</string>
        </property>
       </widget>
      </widget>
