@@ -23,7 +23,7 @@ class Robot:
 		self.ki = []
 		self.kd = []
 		for i in range(n_motor):
-			self.ang.append(0)
+			self.position.append(0)
 			self.sensor.append(0)
 			if TYPE_CONTROL == "PID":
 				self.kp.append(0)

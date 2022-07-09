@@ -46,7 +46,7 @@ class Ui_MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.button_lm_down.clicked.connect(self.moveScaraLinealDown)
         self.button_act_start.clicked.connect(self.actuatoScaraOn)
         self.button_act_stop.clicked.connect(self.actuatoScaraOff)
-        self.button_home.clicked.connect(self.goHOme)
+        self.button_home.clicked.connect(self.goHome)
 
     def moveScaraBaseClock(self):
         if self.scara1_man.isChecked():
