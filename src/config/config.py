@@ -25,7 +25,7 @@ NAME_FEEDER = "alimentador"
 # Input number of motors
 N_MOTOR = 3
 #Input if the robot has a current control
-AMPER_CONTROL = True
+AMPER_CONTROL = False
 #Input the type of control
 TYPE_CONTROL = "ON-OFF"
 #Input the type of identification
